@@ -1224,6 +1224,7 @@ var GetFileName = function ( path ) {
         return arSplitUrl[arSplitUrl.length - 1];
 
     // 1
+    // 2
     return null;
 };
 
