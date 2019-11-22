@@ -1,17 +1,27 @@
-var testObj = cc.Class.extend({
+var base = cc.Class.extend({
 
     testValue : 1,
 
-    ctor : function () {
-        // this._super();
-
+    ctor : function ( name ) {
+        this.name = name;
         this.testValue2 = 10;
     },
 
     testFunc : function () {
+        cc.log("base testFunc");
+    },
+});
 
+var derived = base.extend({
+
+    ctor : function ( name, testID ) {
+        this._super(name);
+        this._testID = testID;
     },
 
+    testFunc : function() {
+        cc.log("derived testFunc");
+    }
 });
 
 
@@ -146,7 +156,8 @@ var HelloWorldLayer = cc.Layer.extend({
 
         // this.runAction( cc.sequence(cc.delayTime(3.0), cc.callFunc(this.screenShotBlur, this)) );
 
-        var locTestObj = new testObj();
+        var locBaseObj = new base("base");
+        var locDerivedObj = new derived("derived", 100);
 
         return true;
     },
@@ -1212,6 +1223,7 @@ var GetFileName = function ( path ) {
     if (arSplitUrl.length > 0)
         return arSplitUrl[arSplitUrl.length - 1];
 
+    // 1
     return null;
 };
 
